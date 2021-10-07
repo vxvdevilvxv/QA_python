@@ -36,7 +36,7 @@ def test_search_on_enter_key(browser):
         assert False, 'Отправка запроса по клавише ENTER не работает'
 
 
-# тест того, что результат первоначального запроса содержит результат уточненного
+# тест на вхождение данных результата уточненного запроса в множество результатов первоначального запроса
 def test_for_entry(browser):
     text_selector = 'span.a-size-medium.a-color-base.a-text-normal'
     url_selector = 'h2 a.a-link-normal.a-text-normal'
