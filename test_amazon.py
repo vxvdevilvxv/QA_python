@@ -2,15 +2,14 @@ import unittest
 import random
 from selenium.webdriver.common.keys import Keys
 
-global link
+global link, search_form_id
 link = 'https://www.amazon.com/'
-
+search_form_id = '#twotabsearchtextbox'
 
 # проверка на регистрозависимость поиска
 def test_case_sensitive(browser):
     search_queries = ['iphone', 'IPHONE', 'IpHoNe']
     browser.get(link)
-    search_form_id = '#twotabsearchtextbox'
     button_id = '#nav-search-submit-button'
     list_of_results = set()
     for query in search_queries:
@@ -28,7 +27,6 @@ def test_case_sensitive(browser):
 # тест отправки запроса по нажатию на ENTER
 def test_search_on_enter_key(browser):
     browser.get(link)
-    search_form_id = '#twotabsearchtextbox'
     search_form = browser.find_element_by_css_selector(search_form_id)
     search_form.send_keys('iphone')
     search_form.send_keys(Keys.ENTER)
@@ -42,7 +40,6 @@ def test_search_on_enter_key(browser):
 def test_for_entry(browser):
     text_selector = 'span.a-size-medium.a-color-base.a-text-normal'
     url_selector = 'h2 a.a-link-normal.a-text-normal'
-    search_form_id = '#twotabsearchtextbox'
     browser.get(link)
     search_form = browser.find_element_by_css_selector(search_form_id)
     search_form.send_keys('iphone')
@@ -67,7 +64,6 @@ def test_for_entry(browser):
 # проверка работы фильтра по рейтингу
 def test_rate_filter(browser):
     filter_selector = '/html/body/div[1]/div[2]/div[1]/div[2]/div/div[3]/span/div[1]/span/div/div/div[4]/ul/li[1]/span/a/section/i'
-    search_form_id = '#twotabsearchtextbox'
     browser.get(link)
     search_form = browser.find_element_by_css_selector(search_form_id)
     search_form.send_keys('iphone')
